@@ -1,5 +1,4 @@
-# YOLOv5 requirements
-# Usage: pip install -r requirements.txt
+
 
 # Base ----------------------------------------
 matplotlib>=3.2.2
@@ -13,7 +12,9 @@ torch>=1.7.0
 torchvision>=0.8.1
 tqdm>=4.41.0
 protobuf<=3.20.1  # https://github.com/ultralytics/yolov5/issues/8012
-
+datetime
+gcsa
+easyocr
 # Logging -------------------------------------
 tensorboard>=2.4.1
 # wandb

@@ -3,11 +3,11 @@ import easyocr
 import cv2
 import numpy as np
 import pandas as pd
-import os
+#import os
 import sys
-import subprocess
+#import subprocess
 from PIL import Image
-import pyperclip
+#import pyperclip
 import json
 
 

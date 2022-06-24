@@ -1,13 +1,13 @@
 #from typing import final
-import easyocr
+#import easyocr
 import cv2
 import numpy as np
 import pandas as pd
 import os
 import sys
-import subprocess
+#import subprocess
 from PIL import Image
-import pyperclip
+#import pyperclip
 
 
 image = str(sys.argv[1])
