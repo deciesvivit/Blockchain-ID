@@ -1,0 +1,5 @@
+train: C:\Users\Admin\Downloads\yolov5-master\train
+val: C:\Users\Admin\Downloads\yolov5-master\valid
+
+nc: 6
+names: ['DL no.', 'Name', 'State', 'address', 'dob', 'expiry']
