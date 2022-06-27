@@ -7,11 +7,11 @@ Moralis.start({ serverUrl, appId });
 let user = Moralis.User.current();
 
 
-/** Add from here down */
+
 async function loginW() {
   if (!user) {
    try {
-      user = await Moralis.authenticate({ signingMessage: "Hello World!" , provider: "walletconnect" , chainID: 4})
+      user = await Moralis.authenticate({ signingMessage: "Upload ID" , provider: "walletconnect" , chainID: 4})
 
     //  console.log(user);
       
@@ -30,7 +30,7 @@ async function loginW() {
 async function loginM() {
   if (!user) {
    try {
-      user = await Moralis.authenticate({ signingMessage: "Hello World!"})
+      user = await Moralis.authenticate({ signingMessage: "Upload ID"})
       
       
     //  console.log(user);
