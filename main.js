@@ -1,15 +1,40 @@
+
+
 /** Connect to Moralis server */
 const serverUrl = "https://lh5uvrqyyh8v.usemoralis.com:2053/server";
 const appId = "ExONtBeRWfpRTgwihsug3kgAhv832d0ihWL67Vw7";
 Moralis.start({ serverUrl, appId });
 let user = Moralis.User.current();
 
+
 /** Add from here down */
-async function login() {
+async function loginW() {
   if (!user) {
    try {
-      user = await Moralis.authenticate({ signingMessage: "Hello World!" })
-      initApp();
+      user = await Moralis.authenticate({ signingMessage: "Hello World!" , provider: "walletconnect" , chainID: 4})
+
+    //  console.log(user);
+      
+   } catch(error) {
+     console.log(error)
+   }
+  }
+  else{
+    Moralis.enableWeb3({provider: 'walletconnect'});
+    initApp();
+  }
+  div = document.getElementById("login");
+  div.style.display = "none" ;
+  console.log(Moralis.User.current());
+}
+async function loginM() {
+  if (!user) {
+   try {
+      user = await Moralis.authenticate({ signingMessage: "Hello World!"})
+      
+      
+    //  console.log(user);
+      
    } catch(error) {
      console.log(error)
    }
@@ -18,11 +43,14 @@ async function login() {
     Moralis.enableWeb3();
     initApp();
   }
+  div = document.getElementById("login");
+  div.style.display = "none" ;
+  console.log(Moralis.User.current());
 }
 
 function initApp(){
     document.querySelector("#app").style.display = "block";
-    document.querySelector("#submit_button").onclick = submit;
+    //document.querySelector("#submit_button").onclick = submit();
 }
 
 async function submit(){
@@ -50,10 +78,14 @@ async function submit(){
         tokenUri: 'ipfs://' + metadataHash,
         royaltiesAmount: 5, // 0.05% royalty. Optional
     })
+    userAddress = user.get('ethAddress');
     console.log(res);
     document.querySelector('#success_message').innerHTML = 
         `NFT minted. <a href="https://rinkeby.rarible.com/token/${res.data.result.tokenAddress}:${res.data.result.tokenId}">View NFT`;
     document.querySelector('#success_message').style.display = "block";
+    document.querySelector('#view').innerHTML = 
+    `USER Address stored in log: ${userAddress}`;
+    document.querySelector('#view').style.display = "block";
     setTimeout(() => {
         document.querySelector('#success_message').style.display = "none";
     }, 5000)

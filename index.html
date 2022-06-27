@@ -48,13 +48,18 @@
   <body>
         <div class="container">
             <div class="row">
-                <div class="title">Review Details and Upload processed data</div>
+                <div class="title">Review Details and Upload processed data </div>
+                <div id="login" style="padding:50px">
+                    <button class="btn btn-primary btn-lg btn-block" style="width:400px; text-align: center; margin-left: auto; margin-right: auto " id="submit_button" onclick="loginM()">Login with Metamask</button>
+                    <button class="btn btn-primary btn-lg btn-block" style="width:400px; text-align: center; margin-left: auto; margin-right: auto " id="submit_button" onclick="loginW()">Login with other wallets</button>
+                </div>
+                    
                 <div id="app" class="col-md-6 offset-md-3">
                     <div id="success_message">
                         
                     </div>
                     <div class="form_element">
-                    <input class="form-control type="text" id="input_name" name="name" placeholder="Token name">
+                    <input class="form-control" type="text" id="input_name" name="name" placeholder="Token name">
                     </div>
                     <div class="form_element">
                     <input class="input" type="text" id="input_description" name="description" placeholder="Description">
@@ -63,11 +68,15 @@
                     <input class="form-control" type="file" id="input_image" name="image" accept="image/png, image/jpeg">
                     </div>
                     <div class="form_element">
-                    <button class="btn btn-primary btn-lg btn-block" id="submit_button">Submit</button>
+                    <button class="btn btn-primary btn-lg btn-block" id="submit_button" onclick="submit()">Submit</button>
+                    </div>
+                    <div id="view">
+
                     </div>
                 </div>
             </div>
         </div>
+    <script src="https://github.com/WalletConnect/walletconnect-monorepo/releases/download/1.7.1/web3-provider.min.js"></script>
     <script type="text/javascript" src="./main.js"></script>
   </body>
 </html>
