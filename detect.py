@@ -241,16 +241,16 @@ def run(
         
 
 
-        webbrowser.open('http://127.0.0.1:5500/index.html')
-        time.sleep(2)
-        pyautogui.press('tab') 
-        pyautogui.press('tab') 
+        #webbrowser.open('http://127.0.0.1:5500/index.html')
+        #time.sleep(2)
+        #pyautogui.press('tab') 
+        #pyautogui.press('tab') 
         #pyautogui.press('tab')
-        with open('final.txt','r') as f:
-            string=f.read()
-            f.close()
-        print(string)
-        pyautogui.write(string)
+        #with open('final.txt','r') as f:
+        #    string=f.read()
+        #    f.close()
+        #print(string)
+        #pyautogui.write(string)
         #f = open('review.json','a')
         #data=json.load(f)
         #for i in data['expiry']:

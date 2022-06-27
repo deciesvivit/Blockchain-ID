@@ -71,6 +71,8 @@ async function submit(){
 
     let metadataHash = jsonFile.hash();
     console.log(jsonFile.ipfs())
+    userAddress = user.get('ethAddress');
+    console.log(userAddress);
     let res = await Moralis.Plugins.rarible.lazyMint({
         chain: 'rinkeby',
         userAddress: user.get('ethAddress'),
@@ -78,17 +80,37 @@ async function submit(){
         tokenUri: 'ipfs://' + metadataHash,
         royaltiesAmount: 5, // 0.05% royalty. Optional
     })
-    userAddress = user.get('ethAddress');
+    window.tokenID = res.data.result.tokenId;
     console.log(res);
     document.querySelector('#success_message').innerHTML = 
-        `NFT minted. <a href="https://rinkeby.rarible.com/token/${res.data.result.tokenAddress}:${res.data.result.tokenId}">View NFT`;
+        `<button class="btn btn-primary btn-lg btn-block" id="view_nft" onclick="log()"><a href="https://rinkeby.rarible.com/token/${res.data.result.tokenAddress}:${res.data.result.tokenId}">View NFT</button>`;
     document.querySelector('#success_message').style.display = "block";
     document.querySelector('#view').innerHTML = 
     `USER Address stored in log: ${userAddress}`;
     document.querySelector('#view').style.display = "block";
-    setTimeout(() => {
-        document.querySelector('#success_message').style.display = "none";
-    }, 5000)
+    //setTimeout(() => {
+    //    document.querySelector('#success_message').style.display = "none";
+    //}, 5000)
+}
+async function log(){
+    userAddress = user.get('ethAddress');
+    try {
+      user = await Moralis.authenticate({ signingMessage: userAddress + " has viewed ID with token ID " + window.tokenID})
+    
+    
+  //  console.log(user);
+    
+      } catch(error) {
+        console.log(error)
+      }
+
+  
+    //Moralis.enableWeb3();
+    
+    const transactions = await Moralis.Web3API.account.getTransactions();
+    console.log(transactions);
+    //var blob = new Blob([transactions], { type: "text/plain;charset=utf-8" });
+    //saveAs(blob, "log.txt");
 }
 
 login();
